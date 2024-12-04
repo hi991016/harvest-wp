@@ -1,4 +1,17 @@
-<?php get_header(); ?>
+<?php 
+    get_header(); 
+
+    // contact info
+    $author_id = get_the_author_meta('ID');
+    $avatar = get_avatar($author_id, array('size' => 450));
+    $display_name = get_the_author_meta( 'display_name' , $author_id );
+    $last_name = get_the_author_meta( 'last_name' , $author_id );
+    $first_name = get_the_author_meta( 'first_name' , $author_id );
+    $name_en = get_the_author_meta( 'name_en' , $author_id );
+    $ig = get_the_author_meta( 'url' , $author_id );
+    $jpsummary = get_the_author_meta( 'user_profile_summary' , $author_id );
+    $ensummary = get_the_author_meta( 'user_profile_summary_en' , $author_id );
+?>
 
     <!-- @main -->
     <main class="memberpage">
@@ -10,24 +23,24 @@
                         <span></span>
                         <h2>PROFILE</h2>
                     </div>
+
                     <div class="detail_profile_inner">
                         <div class="detail_profile_left">
                             <figure>
-                                <img class="lazy" data-src="<?= get_template_directory_uri() ?>/assets/img/member/avatar.webp" alt="中原 昌哉" width="300"
-                                    height="300" draggable="false">
+                                <?= $avatar; ?> 
                             </figure>
                         </div>
                         <div class="detail_profile_right">
                             <div class="detail_profile_author">
                                 <div class="jpname">
-                                    <p class="last_name">中原</p>
-                                    <p class="first_name">昌哉</p>
+                                    <p class="last_name"><?= $last_name; ?></p>
+                                    <p class="first_name"><?= $first_name; ?></p>
                                 </div>
                                 <div class="enname">
                                     <span>|</span>
-                                    <p>Masaya Nakahara</p>
+                                    <p><?= $name_en; ?></p>
                                 </div>
-                                <a href="https://instagram.com/" class="insta" target="_blank"
+                                <a href="<?= $ig; ?>" class="insta" target="_blank"
                                     rel="noopener noreferrer">
                                     <svg id="insta" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 20 20">
@@ -53,14 +66,14 @@
 
                             <div class="detail_profile_history">
                                 <div class="detail_profile_content jphistory">
-                                    <p>1973年 生まれ</p>
-                                    <p>1995年 日本映画学校（現・日本映画大学）卒業</p>
-                                    <p>2005年 シネマトグラファーとして独立</p>
+                                    <p>
+                                        <?= $jpsummary; ?>
+                                    </p>
                                 </div>
                                 <div class="detail_profile_content enhistory">
-                                    <p>1973 – Born</p>
-                                    <p>1995 – Graduates Japan Institute of the Moving Image</p>
-                                    <p>2005 – Becomes a cinematographer</p>
+                                    <p>
+                                        <?= $ensummary; ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -72,18 +85,34 @@
                         <span></span>
                         <h2>WORKS</h2>
                     </div>
+
                     <div class="detail_works_list">
-                        <!-- ## -->
+                        <?php 
+                            $author_posts1 = array(
+                                'post_type'=> 'post',
+                                'orderby'    => 'ID',
+                                'post_status' => 'publish',
+                                'order'    => 'DESC',
+                                'posts_per_page' => -1,
+                                'author'        =>  $author_id, 
+                            );
+                            $author_posts = new WP_Query( $author_posts1 );
+                            if ( $author_posts-> have_posts() ) : 
+                                $i =0;
+                                while( $author_posts->have_posts() ) :
+                                    $author_posts->the_post();
+                                    $thumbnail = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+                        ?>
+
                         <div class="detail_works_items">
-                            <div class="detail_works_content" data-popup-toggler="0" data-password>
+                            <div class="detail_works_content" data-popup-toggler="<?= $i; ?>">
                                 <figure>
-                                    <img class="lazy" data-src="<?= get_template_directory_uri() ?>/assets/img/member/works.webp" alt="Suntory サン生"
-                                        width="380" height="213.75" loading="lazy">
+                                    <img class="lazy" data-src="<?= $thumbnail; ?>" alt="<?= the_title(); ?>" width="380" height="213.75" loading="lazy">
                                 </figure>
-                                <p>Suntory サン生</p>
+                                <p><?= the_title(); ?></p>
                             </div>
                             <!-- // -->
-                            <div class="detail_popup" data-popup="0">
+                            <div class="detail_popup" data-popup="<?= $i ?>">
                                 <div class="detail_popup_close" data-popup-close>
                                     <span></span>
                                     <span></span>
@@ -91,66 +120,35 @@
                                 <div class="detail_popup_wrapper">
                                     <div class="detail_popup_inner">
                                         <div class="detail_popup_content">
-                                            <div class="detail_pass" data-popup-password>
-                                                <form>
-                                                    <label for="password">パスワードを入力してください</label>
-                                                    <input type="password" id="password" value="">
-                                                    <button>送信</button>
-                                                </form>
-                                                <div class="detail_pass_notes">
-                                                    ※ こちらの動画はパスワードが必要です。<br />
-                                                    動画の視聴をご希望の方はこ<a href="/contact/password.html">ちらより</a>パスワードを請求してください
-                                                </div>
-                                            </div>
                                             <div class="detail_popup_video" data-popup-video>
                                                 <p>Suntory サン生</p>
+                                                <?php 
+                                                    if( post_password_required() ) :
+                                                ?>
+                                                    <p><?= get_the_content(); ?></p>
+                                                <?php else: ?>
                                                 <iframe width="560" height="315"
-                                                    src="https://www.youtube.com/embed/xMPW9FWDFV0??fs=0&amp;rel=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;start=0"
-                                                    title="YouTube video player" frameborder="0"
+                                                    src="<?= get_the_content(); ?>"
+                                                    title="<?= the_title(); ?>" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                                                 </iframe>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- ## -->
-                        <div class="detail_works_items">
-                            <div class="detail_works_content" data-popup-toggler="1">
-                                <figure>
-                                    <img class="lazy" data-src="<?= get_template_directory_uri() ?>/assets/img/member/works.webp" alt="タイトルが入ります。タイトルが入ります。タイトルが入り
-                                    ます。タイトルが入ります。" width="380" height="213.75" loading="lazy">
-                                </figure>
-                                <p>
-                                    タイトルが入ります。タイトルが入ります。タイトルが入り<br />
-                                    ます。タイトルが入ります。
-                                </p>
-                            </div>
-                            <!-- // -->
-                            <div class="detail_popup" data-popup="1">
-                                <div class="detail_popup_close" data-popup-close>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <div class="detail_popup_wrapper">
-                                    <div class="detail_popup_inner">
-                                        <div class="detail_popup_content">
-                                            <div class="detail_popup_video" data-popup-video>
-                                                <p>Suntory サン生</p>
-                                                <video controls>
-                                                    <source
-                                                        src="https://www.suntory.co.jp/whisky/yamazaki/mp4/movie_pc.mp4"
-                                                        type="video/mp4">
-                                                </video>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        <?php
+                                    $i++;
+                                    endwhile;
+                                else: echo 'No works found';
+                            endif; wp_reset_postdata();
+                        ?>
                     </div>
+
                     <div class="detail_loading">
                         <svg xmlns="http://www.w3.org/2000/svg" width="43.841" height="22.628"
                             viewBox="0 0 43.841 22.628">

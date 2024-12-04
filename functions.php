@@ -154,11 +154,34 @@
     // add_action( 'admin_menu', 'add_page_to_admin_menu' );
 
     add_action('init', 'initTheme');
-    // add_theme_support('post-thumbnails', array('post', 'services'));
+    add_theme_support('post-thumbnails', array('post'));
     // add_action( 'admin_menu', 'remove_menus' );
 	add_action( 'admin_bar_menu', 'remove_admin_bar_menus', 999 );
     // add_action('init', 'create_post_type');
     add_action( 'init', 'create_taxonomy', 0 );
+
+    // ##
+    add_filter( 'protected_title_format', 'remove_protected_text' );
+    function remove_protected_text() {
+        return '%s';
+    }
+    function my_custom_password_form() {
+        global $post;
+        $label = 'pwform-' . ( empty( $post->ID ) ? rand() : $post->ID );
+        $output = '
+        <div class="form-wrapper">
+            <div class="form-innerWrapper">
+                <form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-inline post-password-form" method="post">
+                    <p>' . __( 'This content is password protected. This is a custom message. To view it please enter your password below.' ) . '</p>
+                    <label for="' . $label . '">' . __( 'Password:' ) . '</label>
+                    <input name="post_password" id="' . $label . '" type="password" size="20" class="form-control" />
+                    <button type="submit" name="Submit" class="button-primary">' . esc_attr_x( 'Enter', 'post password form' ) . '</button>
+                </form>
+            </div>
+        </div>';
+        return $output;
+    }
+    add_filter('the_password_form', 'my_custom_password_form', 99);
 
     // add_action('init', function() {
     //     remove_post_type_support('works', 'editor');

@@ -21,6 +21,8 @@
       }
 
       &_left {
+        aspect-ratio: 1 / 1;
+
         figure {
           display: block;
           z-index: 1;
@@ -397,7 +399,7 @@
           font-size: 1.4rem;
           font-weight: 700;
           font-family: $noto-fonts;
-          transition: all .5s ease;
+          transition: all 0.5s ease;
 
           &:hover {
             background-color: #fff;

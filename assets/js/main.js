@@ -7,7 +7,7 @@ const refreshTime = function () {
   if (now >= 6 && now <= 17) {
     document.documentElement.setAttribute("data-theme", "light");
   } else {
-    document.documentElement.setAttribute("data-theme", "light");
+    document.documentElement.setAttribute("data-theme", "dark");
   }
 };
 setInterval(refreshTime, 0);
@@ -104,14 +104,10 @@ const closePopupAll = () => {
   headerContact.classList.remove("--hide");
   $(`[data-popup]`).fadeOut();
   $(`[data-popup-video]`).fadeOut();
-  setTimeout(() => {
-    $(`[data-popup-password]`).fadeIn();
-  }, 500);
 };
 
 popupToggler.forEach((itemElement) => {
   const itemNumber = itemElement.getAttribute("data-popup-toggler");
-  const itemHasAttribute = itemElement.hasAttribute("data-password");
   const popupElement = document.querySelector(`[data-popup="${itemNumber}"]`);
 
   itemElement.addEventListener("click", () => {
@@ -119,12 +115,6 @@ popupToggler.forEach((itemElement) => {
     if (popupElement) {
       $(`[data-popup="${itemNumber}"]`).fadeIn();
       headerContact.classList.add("--hide");
-
-      if (itemHasAttribute) {
-        $(`[data-popup="${itemNumber}"] [data-popup-video]`).fadeOut();
-      } else {
-        $(`[data-popup="${itemNumber}"] [data-popup-video]`).fadeIn();
-      }
     }
   });
 });
@@ -134,14 +124,6 @@ popupClose.forEach((itemElement) => {
     closePopupAll();
     stopVideo();
   });
-});
-
-$(".detail_pass form button").on("click", function (e) {
-  e.preventDefault();
-  $(`[data-popup-password]`).fadeOut();
-  setTimeout(() => {
-    $(`[data-popup-video]`).fadeIn();
-  }, 500);
 });
 
 const stopVideo = function () {
