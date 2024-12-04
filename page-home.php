@@ -77,72 +77,31 @@
                     <div class="member_group">
                         <h3>CINEMATOGRAPHER</h3>
                         <div class="member_list">
-                            <!-- ## -->
-                            <a href="/member/" class="member_items" data-ufade>
+                            <?php
+                                $args = array(
+                                    'role'    => 'author',
+                                    'orderby' => 'user_nicename',
+                                    'order'   => 'ASC'
+                                );
+                                $users = get_users( $args );
+                                if ( count($users) > 0 ) :
+                                    foreach ( $users as $user ) :
+                            ?>
+                            <a href="<?= get_author_posts_url( $user->ID ); ?>" class="member_items" data-ufade>
                                 <div class="member_jpname">
-                                    <p class="last_name">岡村</p>
-                                    <p class="first_name">良憲</p>
+                                    <p class="last_name"><?= $user->last_name; ?></p>
+                                    <p class="first_name"><?= $user->first_name; ?></p>
                                 </div>
                                 <div class="member_enname">
                                     <span>|</span>
-                                    <p>Ryoken Okamura</p>
+                                    <p><?= $user->name_en; ?></p>
                                 </div>
                             </a>
-                            <!-- ## -->
-                            <a href="/member/" class="member_items" data-ufade>
-                                <div class="member_jpname">
-                                    <p class="last_name">中原</p>
-                                    <p class="first_name">昌哉</p>
-                                </div>
-                                <div class="member_enname">
-                                    <span>|</span>
-                                    <p>Masaya Nakahara</p>
-                                </div>
-                            </a>
-                            <!-- ## -->
-                            <a href="/member/" class="member_items" data-ufade>
-                                <div class="member_jpname">
-                                    <p class="last_name">小竹</p>
-                                    <p class="first_name">康方</p>
-                                </div>
-                                <div class="member_enname">
-                                    <span>|</span>
-                                    <p>Koho Kotake</p>
-                                </div>
-                            </a>
-                            <!-- ## -->
-                            <a href="/member/" class="member_items" data-ufade>
-                                <div class="member_jpname">
-                                    <p class="last_name">越後</p>
-                                    <p class="first_name">祐太</p>
-                                </div>
-                                <div class="member_enname">
-                                    <span>|</span>
-                                    <p>Yuta Echigo</p>
-                                </div>
-                            </a>
-                            <!-- ## -->
-                            <a href="/member/" class="member_items" data-ufade>
-                                <div class="member_jpname">
-                                    <p class="last_name">村上</p>
-                                    <p class="first_name">ヨシタカ</p>
-                                </div>
-                                <div class="member_enname">
-                                    <span>|</span>
-                                    <p>Yoshitaka Murakami</p>
-                                </div>
-                            </a>
-                            <!-- ## -->
-                            <a href="/member/" class="member_items" data-ufade>
-                                <div class="member_jpname">
-                                    <p class="last_name">清水</p>
-                                    <p class="first_name">絵里加</p>
-                                </div>
-                                <div class="member_enname">
-                                    <span>|</span>
-                                    <p>Erika Shimizu</p>
-                                </div>
-                            </a>
+                            <?php 
+                                    endforeach;
+                                else: echo '<p class="nofound">No member found</p>';
+                                endif;
+                            ?>
                         </div>
                     </div>
 
@@ -150,7 +109,7 @@
                         <h3>MANAGER</h3>
                         <div class="member_list">
                             <!-- ## -->
-                            <a href="/member/" class="member_items --disabled" data-ufade>
+                            <a href="<?= home_url(); ?>" class="member_items --disabled" data-ufade>
                                 <div class="member_jpname">
                                     <p class="last_name">入野</p>
                                     <p class="first_name">恵</p>

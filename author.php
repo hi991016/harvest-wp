@@ -120,7 +120,7 @@
                         <div class="detail_works_items">
                             <div class="detail_works_content" data-popup-toggler="1">
                                 <figure>
-                                    <img class="lazy" data-src="/assets/img/member/works.webp" alt="タイトルが入ります。タイトルが入ります。タイトルが入り
+                                    <img class="lazy" data-src="<?= get_template_directory_uri() ?>/assets/img/member/works.webp" alt="タイトルが入ります。タイトルが入ります。タイトルが入り
                                     ます。タイトルが入ります。" width="380" height="213.75" loading="lazy">
                                 </figure>
                                 <p>

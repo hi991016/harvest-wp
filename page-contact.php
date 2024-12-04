@@ -12,7 +12,7 @@
                     </div>
                     <div class="contact_desc">
                         お仕事のご依頼やご相談はお問い合わせフォームまたはお電話にて承ります。<br />
-                        <a href="/privacy-policy/">プライバシーポリシーをご確</a>認頂き、同意の上、送信して下さい。
+                        <a href="<?= home_url(); ?>/privacy-policy/">プライバシーポリシーをご確</a>認頂き、同意の上、送信して下さい。
                     </div>
                     <div class="contact_info">
                         <div class="contact_info_content">
@@ -23,38 +23,21 @@
 
                     <div class="contact_form">
                         <h3>※印は入力必須項目です</h3>
-                        <form action="" class="js-form">
-                            <div class="contact_items">
-                                <label for="company">会社名</label>
-                                <input type="text" id="company" name="company">
-                            </div>
-                            <div class="contact_items">
-                                <label for="name">※お名前</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="contact_items">
-                                <label for="email">※メール</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="contact_items">
-                                <label for="phone">電話番号</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
-                            <div class="contact_items">
-                                <label for="inquiry">※お問合せ内容</label>
-                                <textarea name="inquiry" id="inquiry" required></textarea>
-                            </div>
-                            <div class="contact_checkbox">
-                                <input id="js-checkbox" name="checkbox" type="checkbox">
-                                <div class="privacy">
-                                    <a href="/privacy-policy/">プライバシーポリシーに同意</a>します。
-                                </div>
-                            </div>
-                            <div class="contact_submit js-send">
-                                <input type="submit" id="submit_btn" class="btn" value="SEND">
-                            </div>
-                        </form>
 
+                        <?php echo do_shortcode('[contact-form-7 id="56a1b57" title="お問い合わせ" html_id="js-form"]') ?>
+
+                        <!-- # -->
+                        <div class="contact_checkbox">
+                            <input id="js-checkbox" name="checkbox" type="checkbox">
+                            <div class="privacy">
+                                <a href="<?= home_url(); ?>/privacy-policy/">プライバシーポリシーに同意</a>します。
+                            </div>
+                        </div>
+                        <!-- # -->
+                        <div class="contact_submit js-send">
+                            <input type="submit" id="submit_btn" class="btn" value="SEND">
+                        </div>
+                        <!-- # -->
                         <div class="contact_noti js-noti">
                             <p>ありがとうございます。 メッセージは送信されました。</p>
                         </div>
