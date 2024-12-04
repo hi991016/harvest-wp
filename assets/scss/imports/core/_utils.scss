@@ -1,6 +1,10 @@
 /* Utils
 ------------------------------------------------------------*/
 
+.--disabled {
+  pointer-events: none !important;
+}
+
 /* keyframes */
 @keyframes scrolldown {
   0% {

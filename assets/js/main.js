@@ -7,7 +7,7 @@ const refreshTime = function () {
   if (now >= 6 && now <= 17) {
     document.documentElement.setAttribute("data-theme", "light");
   } else {
-    document.documentElement.setAttribute("data-theme", "dark");
+    document.documentElement.setAttribute("data-theme", "light");
   }
 };
 setInterval(refreshTime, 0);
