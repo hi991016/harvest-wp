@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="HARVEST">
     <meta property="og:title" content="HARVEST">
     <meta property="og:description" content="HARVEST">
-    <meta property="og:image" content="<?= get_template_directory_uri() ?>/ogimage.jpg">
+    <meta property="og:image" content="<?= get_template_directory_uri() ?>/ogimage.png">
     <meta property="og:url" content="<?= home_url(); ?>">
 
     <!-- @meta twitter -->
@@ -25,7 +25,7 @@
     <meta property="twitter:site" content="HARVEST">
     <meta property="twitter:title" content="HARVEST">
     <meta property="twitter:description" content="HARVEST">
-    <meta property="twitter:image" content="images/ogimage.jpg">
+    <meta property="twitter:image" content="<?= get_template_directory_uri() ?>/ogimage.png">
 
     <link rel="canonical" href="<?= home_url(); ?>">
     <link rel="icon" href="<?= get_template_directory_uri() ?>/favicon.ico">
