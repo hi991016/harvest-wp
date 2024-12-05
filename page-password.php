@@ -18,7 +18,7 @@
                     <div class="contact_form">
                         <h3>※印は入力必須項目です</h3>
 
-                        <?php echo do_shortcode('[contact-form-7 id="ef37531" title="PASS" html_id="js-form"]') ?>
+                        <?php echo do_shortcode('[contact-form-7 id="ef37531" title="PASS" html_id="myForm"]') ?>
 
                         <!-- # -->
                         <div class="contact_checkbox">
