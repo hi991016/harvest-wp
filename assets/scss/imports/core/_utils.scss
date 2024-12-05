@@ -1,5 +1,21 @@
 /* Utils
 ------------------------------------------------------------*/
+.ppw-ppf-error-msg {
+  position: absolute;
+  top: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: 700;
+
+  @include maxW(767px) {
+    position: initial;
+    transform: none;
+    text-align: center;
+    font-size: 1.4rem;
+    margin-top: 20px;
+  }
+}
 
 .--disabled {
   pointer-events: none !important;

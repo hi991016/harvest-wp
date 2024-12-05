@@ -24,7 +24,7 @@
                     <div class="contact_form">
                         <h3>※印は入力必須項目です</h3>
 
-                        <?php echo do_shortcode('[contact-form-7 id="56a1b57" title="お問い合わせ" html_id="js-form"]') ?>
+                        <?php echo do_shortcode('[contact-form-7 id="56a1b57" title="お問い合わせ" html_id="myForm"]') ?>
 
                         <!-- # -->
                         <div class="contact_checkbox">
@@ -35,11 +35,7 @@
                         </div>
                         <!-- # -->
                         <div class="contact_submit js-send">
-                            <input type="submit" id="submit_btn" class="btn" value="SEND">
-                        </div>
-                        <!-- # -->
-                        <div class="contact_noti js-noti">
-                            <p>ありがとうございます。 メッセージは送信されました。</p>
+                            <input type="submit" form="myForm" id="btnSend" class="btn" value="SEND">
                         </div>
                     </div>
                 </div>

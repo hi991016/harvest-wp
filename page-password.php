@@ -29,11 +29,7 @@
                         </div>
                         <!-- # -->
                         <div class="contact_submit js-send">
-                            <input type="submit" id="submit_btn" class="btn" value="SEND">
-                        </div>
-                        <!-- # -->
-                        <div class="contact_noti js-noti">
-                            <p>ありがとうございます。 メッセージは送信されました。</p>
+                            <input type="submit" form="myForm" id="btnSend" class="btn" value="SEND">
                         </div>
                     </div>
                 </div>

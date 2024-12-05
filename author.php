@@ -121,12 +121,13 @@
                                     <div class="detail_popup_inner">
                                         <div class="detail_popup_content">
                                             <div class="detail_popup_video" data-popup-video>
-                                                <p>Suntory サン生</p>
                                                 <?php 
                                                     if( post_password_required() ) :
-                                                ?>
-                                                    <p><?= get_the_content(); ?></p>
+                                                ?>  
+                                                <p class="title hide"><?php echo the_title(); ?></p>
+                                                <?= get_the_content(); ?>
                                                 <?php else: ?>
+                                                <p class="title"><?= the_title(); ?></p>
                                                 <iframe width="560" height="315"
                                                     src="<?= get_the_content(); ?>"
                                                     title="<?= the_title(); ?>" frameborder="0"
@@ -144,7 +145,7 @@
                         <?php
                                     $i++;
                                     endwhile;
-                                else: echo 'No works found';
+                                else: echo '<p class="nofound">No works found</p>';
                             endif; wp_reset_postdata();
                         ?>
                     </div>

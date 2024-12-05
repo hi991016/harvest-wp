@@ -160,28 +160,29 @@
     // add_action('init', 'create_post_type');
     add_action( 'init', 'create_taxonomy', 0 );
 
-    // ##
+    // ## pasword protected
     add_filter( 'protected_title_format', 'remove_protected_text' );
     function remove_protected_text() {
         return '%s';
     }
-    function my_custom_password_form() {
-        global $post;
-        $label = 'pwform-' . ( empty( $post->ID ) ? rand() : $post->ID );
-        $output = '
-        <div class="form-wrapper">
-            <div class="form-innerWrapper">
-                <form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-inline post-password-form" method="post">
-                    <p>' . __( 'This content is password protected. This is a custom message. To view it please enter your password below.' ) . '</p>
-                    <label for="' . $label . '">' . __( 'Password:' ) . '</label>
-                    <input name="post_password" id="' . $label . '" type="password" size="20" class="form-control" />
-                    <button type="submit" name="Submit" class="button-primary">' . esc_attr_x( 'Enter', 'post password form' ) . '</button>
-                </form>
+    add_filter( 'ppwp_customize_password_form', 'customize_pwd_form', 10, 3 );
+    function customize_pwd_form( $element, $post_id, $wrong_password_message ) {
+      $label  = 'pwbox-' . ( empty( $post_id ) ? rand() : $post_id );
+      $home_url = home_url();
+      $custom_elements = '
+        <div class="detail_pass js-password">
+            <div class="detail_pass_form unlock-form">' . $wrong_password_message . '
+                <label class="pass-label" for="' . $label . '">' . __( "パスワードを入力してください" ) . ' </label>
+                <input name="post_password" id="' . $label . '" type="password" placeholder="" required autofocus />
+                <input type="submit" name="Submit" value="' . esc_attr__( "送信" ) . '" />
+            </div>
+            <div class="detail_pass_notes">
+                ※ こちらの動画はパスワードが必要です。<br />
+                動画の視聴をご希望の方はこ<a href="'. $home_url .'/contact/password">ちらより</a>パスワードを請求してください
             </div>
         </div>';
-        return $output;
+        return $custom_elements;
     }
-    add_filter('the_password_form', 'my_custom_password_form', 99);
 
     // add_action('init', function() {
     //     remove_post_type_support('works', 'editor');

@@ -38,7 +38,7 @@ const initLenis = () => {
     lerp: 0.05,
     smoothWheel: true,
   });
-  lenis.on("scroll", (e) => {});
+  lenis.on("scroll", (e) => { });
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
@@ -98,12 +98,13 @@ const [popup, popupToggler, popupClose, headerContact] = [
   document.querySelectorAll("[data-popup-close]"),
   document.querySelector(".c-header_right"),
 ];
+let tilVideo;
 
 const closePopupAll = () => {
   stopVideo();
   headerContact.classList.remove("--hide");
   $(`[data-popup]`).fadeOut();
-  $(`[data-popup-video]`).fadeOut();
+  clearInterval(tilVideo);
 };
 
 popupToggler.forEach((itemElement) => {
@@ -115,6 +116,13 @@ popupToggler.forEach((itemElement) => {
     if (popupElement) {
       $(`[data-popup="${itemNumber}"]`).fadeIn();
       headerContact.classList.add("--hide");
+      // display title video
+      tilVideo = setInterval(() => {
+        if ($(`[data-popup="${itemNumber}"]`).find("iframe").length > 0) {
+          $(`[data-popup="${itemNumber}"]`).find("p.title").fadeIn()
+          clearInterval(tilVideo);
+        }
+      }, 1000);
     }
   });
 });
@@ -149,16 +157,11 @@ $("#js-checkbox").change(function () {
   let isCheck = this.checked;
   if (isCheck) {
     $(this).addClass("active");
-    $(this).closest(".js-form").find(".js-send").addClass("active");
+    $(".js-send").addClass("active");
   } else {
     $(this).removeClass("active");
-    $(this).closest(".js-form").find(".js-send").removeClass("active");
+    $(".js-send").removeClass("active");
   }
-});
-
-$("#submit_btn").on("click", function (e) {
-  e.preventDefault();
-  $(".js-noti").fadeIn();
 });
 
 // ===== init =====
@@ -176,6 +179,12 @@ const init = () => {
 const ll = new LazyLoad({
   threshold: 0,
 });
+
+$("[data-popup-video] form").on("submit", function () {
+
+})
+
+
 
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("DOMContentLoaded", init);

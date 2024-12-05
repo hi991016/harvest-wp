@@ -96,6 +96,40 @@
         display: block;
       }
 
+      .wpcf7-response-output {
+        width: 100%;
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-family: $noto-fonts;
+        font-size: 1.4rem;
+        font-weight: 700;
+
+        @include maxW(767px) {
+          bottom: -30px;
+          font-size: 1.2rem;
+          line-height: 2;
+        }
+      }
+
+      .screen-reader-response {
+        display: none !important;
+      }
+
+      .wpcf7-not-valid-tip {
+        font-size: 1.2rem;
+        margin-top: 10px;
+        font-family: $noto-fonts;
+        color: red;
+        display: block;
+      }
+
+      .wpcf7-not-valid {
+        border: 1px solid red !important;
+      }
+
       h3 {
         font-family: $noto-fonts;
         font-size: 1.2rem;
