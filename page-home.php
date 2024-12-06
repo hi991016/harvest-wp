@@ -81,7 +81,7 @@
                                 $args = array(
                                     'role'    => 'author',
                                     'orderby' => 'user_nicename',
-                                    'order'   => 'ASC'
+                                    'order'   => 'DESC'
                                 );
                                 $users = get_users( $args );
                                 if ( count($users) > 0 ) :

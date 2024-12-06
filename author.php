@@ -40,6 +40,7 @@
                                     <span>|</span>
                                     <p><?= $name_en; ?></p>
                                 </div>
+                                <?php if (!empty($ig)) : ?>
                                 <a href="<?= $ig; ?>" class="insta" target="_blank"
                                     rel="noopener noreferrer">
                                     <svg id="insta" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -62,6 +63,7 @@
                                         </g>
                                     </svg>
                                 </a>
+                                <?php endif; ?>
                             </div>
 
                             <div class="detail_profile_history">
