@@ -177,6 +177,7 @@
 
       &_items {
         height: fit-content;
+        display: none;
 
         figure {
           display: block;
@@ -232,7 +233,6 @@
     &_loading {
       margin: 120px auto 0;
       width: fit-content;
-      display: none;
 
       svg {
         line {

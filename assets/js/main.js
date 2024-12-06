@@ -38,7 +38,7 @@ const initLenis = () => {
     lerp: 0.05,
     smoothWheel: true,
   });
-  lenis.on("scroll", (e) => { });
+  lenis.on("scroll", (e) => {});
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
@@ -119,7 +119,7 @@ popupToggler.forEach((itemElement) => {
       // display title video
       tilVideo = setInterval(() => {
         if ($(`[data-popup="${itemNumber}"]`).find("iframe").length > 0) {
-          $(`[data-popup="${itemNumber}"]`).find("p.title").fadeIn()
+          $(`[data-popup="${itemNumber}"]`).find("p.title").fadeIn();
           clearInterval(tilVideo);
         }
       }, 1000);
@@ -152,6 +152,22 @@ const stopVideo = function () {
   }
 };
 
+// ###
+$(document).ready(function () {
+  $("[data-work-items]").slice(0, 15).show();
+  $(window).scroll(function () {
+    if (
+      $(window).scrollTop() + $(window).height() >=
+      $(document).height() - 50
+    ) {
+      $("[data-work-items]:hidden").slice(0, 15).fadeIn("slow");
+    }
+    if ($("[data-work-items]:hidden").length == 0) {
+      $("[data-work-loading]").fadeOut("slow");
+    }
+  });
+});
+
 // ===== form =====
 $("#js-checkbox").change(function () {
   let isCheck = this.checked;
@@ -179,12 +195,6 @@ const init = () => {
 const ll = new LazyLoad({
   threshold: 0,
 });
-
-$("[data-popup-video] form").on("submit", function () {
-
-})
-
-
 
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("DOMContentLoaded", init);

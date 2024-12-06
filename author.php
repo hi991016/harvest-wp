@@ -104,7 +104,7 @@
                                     $thumbnail = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
                         ?>
 
-                        <div class="detail_works_items">
+                        <div class="detail_works_items" data-work-items>
                             <div class="detail_works_content" data-popup-toggler="<?= $i; ?>">
                                 <figure>
                                     <img class="lazy" data-src="<?= $thumbnail; ?>" alt="<?= the_title(); ?>" width="380" height="213.75" loading="lazy">
@@ -150,7 +150,7 @@
                         ?>
                     </div>
 
-                    <div class="detail_loading">
+                    <div class="detail_loading" data-work-loading>
                         <svg xmlns="http://www.w3.org/2000/svg" width="43.841" height="22.628"
                             viewBox="0 0 43.841 22.628">
                             <g id="Group_79" data-name="Group 79" transform="translate(-698.08 -2990.793)">
