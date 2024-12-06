@@ -99,7 +99,7 @@
       .wpcf7-response-output {
         width: 100%;
         position: absolute;
-        bottom: -40px;
+        bottom: -50px;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
@@ -107,6 +107,7 @@
         font-size: 1.4rem;
         font-weight: 700;
         color: var(--black-cl);
+        border: none;
 
         @include maxW(767px) {
           bottom: -30px;
@@ -123,12 +124,12 @@
         font-size: 1.2rem;
         margin-top: 10px;
         font-family: $noto-fonts;
-        color: red;
+        color: #dc3232;
         display: block;
       }
 
       .wpcf7-not-valid {
-        border: 1px solid red !important;
+        border: 1px solid #dc3232 !important;
       }
 
       h3 {
