@@ -172,7 +172,8 @@
                             endif; wp_reset_postdata();
                         ?>
                     </div>
-
+                    
+                    <?php if ( $author_posts-> have_posts() ) : ?>
                     <div class="detail_loading" data-work-loading>
                         <svg xmlns="http://www.w3.org/2000/svg" width="43.841" height="22.628"
                             viewBox="0 0 43.841 22.628">
@@ -186,6 +187,7 @@
                             </g>
                         </svg>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </setion>

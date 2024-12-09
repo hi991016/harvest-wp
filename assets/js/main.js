@@ -155,17 +155,27 @@ const stopVideo = function () {
 // ###
 $(document).ready(function () {
   $("[data-work-items]").slice(0, 15).show();
-  $(window).scroll(function () {
-    if (
-      $(window).scrollTop() + $(window).height() >=
-      $(document).height() - 50
-    ) {
-      $("[data-work-items]:hidden").slice(0, 15).fadeIn("slow");
-    }
+
+  $("[data-work-loading]").click(function (e) {
+    e.preventDefault();
+    $("[data-work-items]:hidden").slice(0, 15).fadeIn("slow");
+
     if ($("[data-work-items]:hidden").length == 0) {
-      $("[data-work-loading]").fadeOut("slow");
+      $("[data-work-loading]").fadeOut("");
     }
   });
+
+  // $(window).scroll(function () {
+  //   if (
+  //     $(window).scrollTop() + $(window).height() >=
+  //     $(document).height() - 50
+  //   ) {
+  //     $("[data-work-items]:hidden").slice(0, 15).fadeIn("slow");
+  //   }
+  //   if ($("[data-work-items]:hidden").length == 0) {
+  //     $("[data-work-loading]").fadeOut("");
+  //   }
+  // });
 });
 
 // ===== form =====

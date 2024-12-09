@@ -217,7 +217,7 @@
 
       display: flex;
       align-items: flex-end;
-      gap: 25px;
+      gap: min(1.74vw, 25px);
 
       &:first-child {
         margin-top: 40px;
@@ -243,7 +243,7 @@
 
       p {
         font-family: $noto-fonts;
-        font-size: 3.662rem;
+        font-size: min(2.5vw, 3.6rem);
         font-weight: 700;
         letter-spacing: 4.394px;
         width: max-content;
@@ -253,40 +253,37 @@
         gap: 7px;
 
         p {
-          font-size: 2.4rem;
+          font-size: min(5.8vw, 2.4rem);
           letter-spacing: 0.88px;
-        }
-      }
-
-      @include maxW(375px) {
-        p {
-          font-size: 1.85rem;
         }
       }
     }
 
     &_enname {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
+      span,
+      p {
+        font-size: min(1.25vw, 1.8rem);
+      }
+
+      span {
+        transform: translateY(-2px);
+        display: inline-block;
+        margin-right: 12px;
+      }
 
       p {
-        font-size: 1.8rem;
+        display: inline-block;
         font-weight: 700;
         letter-spacing: 0.432px;
       }
 
-      @include maxW(1203px) {
-        gap: 7px;
-
+      @include maxW(767px) {
+        span,
         p {
-          font-size: 1.238rem;
+          font-size: min(3vw, 1.2rem);
         }
-      }
-
-      @include maxW(391px) {
-        p {
-          font-size: 0.85rem;
+        span {
+          margin-right: 7px;
         }
       }
     }
