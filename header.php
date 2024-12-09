@@ -32,7 +32,7 @@
 
     <!-- @master css -->
     <link rel="stylesheet" href="<?= get_template_directory_uri() ?>/assets/css/style.min.css?ver=1.0">
-
+   
     <!-- @fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

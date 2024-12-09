@@ -92,7 +92,7 @@
                         <?php 
                             $author_posts1 = array(
                                 'post_type'=> 'post',
-                                'orderby'    => 'ID',
+                                'orderby'    => 'date',
                                 'post_status' => 'publish',
                                 'order'    => 'DESC',
                                 'posts_per_page' => -1,
@@ -124,18 +124,39 @@
                                         <div class="detail_popup_content">
                                             <div class="detail_popup_video" data-popup-video>
                                                 <?php 
-                                                    if( post_password_required() ) :
-                                                ?>  
-                                                <p class="title hide"><?php echo the_title(); ?></p>
-                                                <?= get_the_content(); ?>
+                                                if (post_password_required()) : ?>
+                                                    <!-- パスワード保護された投稿の場合 -->
+                                                    <p class="title hide"><?php echo the_title(); ?></p>
+                                                    <?= get_the_content(); ?>
                                                 <?php else: ?>
-                                                <p class="title"><?= the_title(); ?></p>
-                                                <iframe width="560" height="315"
-                                                    src="<?= get_the_content(); ?>"
-                                                    title="<?= the_title(); ?>" frameborder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                                                </iframe>
+                                                    <!-- 通常の投稿の場合 -->
+                                                    <p class="title"><?= the_title(); ?></p>
+                                                    <?php 
+                                                    // 投稿の内容を取得
+                                                    $video_url = trim(get_the_content());
+
+                                                    // VimeoまたはYouTubeの埋め込みURLを判別
+                                                    if (strpos($video_url, 'vimeo.com') !== false) {
+                                                        // Vimeoの場合、URLを埋め込み形式に変換
+                                                        $video_id = preg_replace('/.*vimeo\.com\/(?:video\/)?([0-9]+).*/', '$1', $video_url);
+                                                        $embed_url = "https://player.vimeo.com/video/" . $video_id;
+                                                    } elseif (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+                                                        // YouTubeの場合、URLを埋め込み形式に変換
+                                                        parse_str(parse_url($video_url, PHP_URL_QUERY), $query_params);
+                                                        $video_id = isset($query_params['v']) ? $query_params['v'] : basename(parse_url($video_url, PHP_URL_PATH));
+                                                        $embed_url = "https://www.youtube.com/embed/" . $video_id;
+                                                    } else {
+                                                        $embed_url = $video_url; // 他のURL形式をそのまま使用
+                                                    }
+                                                    ?>
+
+                                                    <!-- iframeで埋め込み -->
+                                                    <iframe width="560" height="315"
+                                                        src="<?= esc_url($embed_url); ?>"
+                                                        title="<?= the_title(); ?>" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                                    </iframe>
                                                 <?php endif; ?>
                                             </div>
                                         </div>

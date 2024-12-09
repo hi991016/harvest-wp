@@ -80,8 +80,8 @@
                             <?php
                                 $args = array(
                                     'role'    => 'author',
-                                    'orderby' => 'user_nicename',
-                                    'order'   => 'DESC'
+                                    'orderby' => 'ID',
+                                    'order'   => 'ASC'
                                 );
                                 $users = get_users( $args );
                                 if ( count($users) > 0 ) :
