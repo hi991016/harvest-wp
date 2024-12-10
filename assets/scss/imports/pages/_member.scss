@@ -74,7 +74,7 @@
           }
 
           span {
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             display: inline-block;
             margin-right: 12px;
           }
@@ -83,6 +83,7 @@
             display: inline-block;
             font-weight: 700;
             letter-spacing: 0.432px;
+            transform: translateY(2px);
           }
         }
       }
@@ -141,10 +142,11 @@
 
             span {
               margin-right: 7px;
+              transform: translateY(0px);
             }
 
             p {
-              letter-spacing: 0;
+              transform: translateY(0);
             }
           }
         }

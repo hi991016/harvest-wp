@@ -266,15 +266,16 @@
       }
 
       span {
-        transform: translateY(-2px);
         display: inline-block;
         margin-right: 12px;
+        transform: translateY(-1px);
       }
 
       p {
         display: inline-block;
         font-weight: 700;
         letter-spacing: 0.432px;
+        transform: translateY(2px);
       }
 
       @include maxW(767px) {
@@ -284,6 +285,11 @@
         }
         span {
           margin-right: 7px;
+          transform: translateY(0);
+        }
+
+        p {
+          transform: translateY(0);
         }
       }
     }
